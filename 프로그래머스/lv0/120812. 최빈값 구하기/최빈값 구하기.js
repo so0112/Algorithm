@@ -1,16 +1,16 @@
-function solution(array) {
-    if (array.length === 1) return array[0];
-    
-    let obj = {}
-    
-    for (let i = 0; i < array.length; i++){
-        array[i] in obj ? obj[array[i]] += 1 : obj[array[i]] = 1;
-    }
-    
-    let keys = Object.keys(obj);
-    let values = Object.values(obj);
-    let mode = Math.max(...values)
-    
-    return values.filter((el) => el === mode).length > 1 ? -1 : Number(keys[values.indexOf(mode)]);
-}
 
+function solution(array) {
+    const freq = {};
+
+    for (const n of array) {
+        freq[n] = (freq[n] || 0) + 1;
+    }
+
+    const keys = Object.keys(freq);
+
+    keys.sort((a,b) => freq[b] - freq[a]);
+
+    const max = keys[0];
+
+    return freq[keys[0]] === freq[keys[1]] ? -1 : +max;
+}
