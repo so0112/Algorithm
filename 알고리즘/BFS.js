@@ -18,10 +18,10 @@ const BFS = (graph, startNode) => {
   needVisit.push(startNode);
 
   while (needVisit.length !== 0) {
-    const node = needVisit.pop();
+    const node = needVisit.shift();
     if (!visited.includes(node)) {
       visited.push(node);
-      needVisit.push(...graph[node].reverse());
+      needVisit.push(...graph[node]);
     }
   }
   return visited;
