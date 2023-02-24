@@ -7,7 +7,7 @@ function solution(n, words) {
     let turn = Math.ceil((i + 1)/n);
 
     if (i > 0) {
-      let last = words[i - 1].split("").pop();
+      let last = words[i - 1].slice(-1);
 
       if (i !== words.indexOf(word) || words[i][0] !== last) {
         answer = [player, turn];
