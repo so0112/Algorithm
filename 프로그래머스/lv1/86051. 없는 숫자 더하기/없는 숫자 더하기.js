@@ -1,9 +1,8 @@
 function solution(numbers) {
-    let sum = 0;
+    let sum = 45;
     
-    for (let i = 0; i <= 9; i++) {
-        if (numbers.indexOf(i) === -1) sum += i;
+    for (let i = 0; i < numbers.length; i++) {
+        sum -= numbers[i];
     }
-    
     return sum;
 }
