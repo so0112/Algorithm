@@ -1,9 +1,10 @@
 function solution(absolutes, signs) {
-    const arr = [];
+    let sum = 0;
     
-    for (let i = 0; i < signs.length; i++ ){
-        arr.push(absolutes[i] * (signs[i] ? 1 : -1))
+    for (let i = 0; i < signs.length; i++) {
+        if (signs[i]) sum += absolutes[i];
+        else sum -= absolutes[i];
     }
     
-    return arr.reduce((acc, cur) => acc + cur)
+    return sum;
 }
