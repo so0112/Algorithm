@@ -1,6 +1,6 @@
 function solution(phone_number) {
-    let numLen = phone_number.length;
-    let num = phone_number.slice(-4)
+    let masking = phone_number.length - 4;
+    let num = phone_number.slice(-4);
     
-    return "*".repeat(numLen - 4) + num;
+    return "*".repeat(masking) + num;
 }
