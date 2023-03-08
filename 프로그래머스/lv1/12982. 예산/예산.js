@@ -1,13 +1,15 @@
 function solution(d, budget) {
-    let sortedD = d.sort((a,b) => a - b)
-    let cnt = 0;
+    d.sort((a, b) => a - b);
     
-    for (let i = 0; i < d.length; i++){
-        if (budget < sortedD[i]){
-            return cnt;
-        }
-        budget -= sortedD[i];
-        cnt ++;
+    let len = d.length;
+    let cnt = 0;
+
+    while (budget > 0 && cnt !== len) {
+        budget -= d[cnt];
+        cnt++;
     }
+    
+    if (budget < 0) cnt--;
+        
     return cnt;
 }
