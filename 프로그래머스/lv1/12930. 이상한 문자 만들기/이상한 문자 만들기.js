@@ -1,5 +1,5 @@
 function solution(s) {
-     let words = s.split(" ");
+    let words = s.split(" ");
     let answer = "";
 
     for (let i = 0; i < words.length; i++) {
