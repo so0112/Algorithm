@@ -1,39 +1,30 @@
-// arr1, arr2 암호를 2진법으로 변환해서 배열로 만들기
-// map1, map2 인덱스의 각 요소를 비교
-// || 조건으로 finalMap 채우기
 function solution(n, arr1, arr2) {
     
-    let map1 = [];
-    let map2 = [];
-    let finalMap = [];
-    let result = '';
+    let result = [];
     
-    for (let i = 0; i < n; i++){
-        map1.push(arr1[i].toString(2));
-        map2.push(arr2[i].toString(2));
-    } 
-    
-    for (let i = 0; i < n; i++){
-        while(map1[i].length < n){
-            map1[i] = 0 + map1[i]
-        }
+    // 변환
+    let solve1 = arr1.map(el => String(Number(el.toString(2))));
+    let solve2 = arr2.map(el => String(Number(el.toString(2))));    
+
+    // 0 추가 함수
+    const plueZero = (item) => {
+        let require = n - item.length;
+        let str = "0".repeat(require);
         
-        while(map2[i].length < n){
-            map2[i] = 0 + map2[i]
-        }
+        return str + item;
     }
     
-    for (let i = 0; i < n; i++){
-        result = ''
-     for (let j = 0; j < n; j++){
-         if(map1[i][j] === '1' || map2[i][j] === '1'){
-             result += '#'
-         }else {
-             result += ' '
-         }
-     }
-        finalMap.push(result);
+    arr1 = solve1.map(el => plueZero(el));
+    arr2 = solve2.map(el => plueZero(el));
+    
+    for (let i = 0; i < n; i++) {
+        let treasure = "";
+        
+        for (let j = 0; j < n; j++) {
+            if (arr1[i][j] === "0" && arr2[i][j] === "0") treasure += " ";
+            else treasure += "#";
+        }
+        result.push(treasure);
     }
-   
-    return finalMap;
+    return result;
 }
