@@ -1,30 +1,22 @@
 function solution(n, arr1, arr2) {
-    
-    let result = [];
-    
-    // 변환
-    let solve1 = arr1.map(el => String(Number(el.toString(2))));
-    let solve2 = arr2.map(el => String(Number(el.toString(2))));    
+    let num1, num2, s;
+    let answer = [];
 
-    // 0 추가 함수
-    const plueZero = (item) => {
-        let require = n - item.length;
-        let str = "0".repeat(require);
+    for (let i = 0; i < n; i++){
         
-        return str + item;
-    }
-    
-    arr1 = solve1.map(el => plueZero(el));
-    arr2 = solve2.map(el => plueZero(el));
-    
-    for (let i = 0; i < n; i++) {
-        let treasure = "";
+        num1 = arr1[i];
+        num2 = arr2[i];
         
-        for (let j = 0; j < n; j++) {
-            if (arr1[i][j] === "0" && arr2[i][j] === "0") treasure += " ";
-            else treasure += "#";
+        s = '';
+        
+        for (let j = 0; j < n; j++){
+            s = (num1 % 2 + num2 % 2) !== 0 ?  '#' + s: ' ' + s;
+            num1 = Math.floor(num1 / 2);
+            num2 = Math.floor(num2 / 2);
         }
-        result.push(treasure);
-    }
-    return result;
+        
+        answer.push(s);
+    }   
+    
+    return answer;
 }
