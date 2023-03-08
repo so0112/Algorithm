@@ -1,12 +1,6 @@
 function solution(s) {
+    let reg = /^[0-9]+$/;
     let len = s.length;
     
-    if (len !== 4 && len !== 6) return false;
-    
-    for (let i = 0; i < len; i++) {
-        let num = Number(s[i]);
-        if (isNaN(num)) return false;
-    }
-    
-    return true;
+    return len !== 4 && len !== 6 ? false : reg.test(s);
 }
