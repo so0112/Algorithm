@@ -1,23 +1,19 @@
 function solution(s, n) {
-  const lower = "abcdefghijklmnopqrstuvwxyz";
-  const upper = lower.toUpperCase();
-  let   idx = 0;
-  let   result = "";
-
-  for (let i = 0; i < s.length; i++) {
     
-    if (s[i] === " ") {
-      result += " ";
-      continue;
-    }
-
-    if (s[i] === s[i].toLowerCase()){
-        idx = lower.indexOf(s[i]);
-        result += lower[(idx + n) % 26];
-    } else {
-        idx = upper.indexOf(s[i]);
-        result += upper[(idx + n) % 26];
+    let result = "";
+    
+    let alpha = "abcdefghijklmnopqrstuvwxyz"
+    let upper = alpha.toUpperCase();
+    
+    for (let i = 0; i < s.length; i++) {
+        if (s[i] === " ") {
+            result += " ";
+        } else if (s[i] === s[i].toLowerCase()) {
+            result += alpha[((alpha.indexOf(s[i])) + n) % 26];
+        } else {
+            result += upper[((upper.indexOf(s[i])) + n) % 26];
         }
     }
+    
     return result;
-  }
+}
