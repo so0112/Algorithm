@@ -1,17 +1,26 @@
-// 실패율 === 스테이지 도달 했는데 클리어 못 한 사람 수 / 스테이지 도달한 플레이어
-
-// 실패율 높은 스테이지부터 내림차순 배열 반환
 function solution(N, stages) {
-    
-    let FailureRate = [];
-    
-    for (let i = 0; i < N; i++) {
-        let players = stages.filter(el => el >= i + 1).length;
-        let stoppedPlayers = stages.filter(el => el === i + 1).length;
-        FailureRate.push([i + 1, stoppedPlayers / players]);
+    let players = {}; 
+    let totalPlayers = stages.length; 
+
+    for (let i = 1; i <= N + 1; i++) {
+        players[i] = stages.filter(el => el === i).length;
     }
     
-    FailureRate.sort((a, b) => b[1] - a[1]);
+    let failureRates = [];
+    for (let i = 1; i <= N; i++) {
+        if (players[i] === 0) {
+            failureRates.push([i, 0]);
+        } else {
+            let failureRate = players[i] / totalPlayers;
+            failureRates.push([i, failureRate]);
+            totalPlayers -= players[i];
+        }
+    }
     
-    return FailureRate.map(el => el[0]);
+    failureRates.sort((a, b) => {
+        if (a[1] === b[1]) return a[0] - b[0]; 
+        else return b[1] - a[1];
+    });
+    
+    return failureRates.map(el => el[0]);
 }
