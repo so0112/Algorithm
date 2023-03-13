@@ -1,18 +1,18 @@
 function solution(participant, completion) {
-    const obj = {};
+    participant.sort();
+    completion.sort();
     
-    for (let p of participant) {
-        if (!obj[p]) obj[p] = 1;
-        else obj[p] += 1;
+    let obj = {};
+    
+    for (let el of participant) {
+        obj[el] === undefined ? obj[el] = 1 : obj[el] += 1;
     }
     
-    for (let c of completion) {
-        obj[c] -= 1;
+    for (let el of completion) {
+        obj[el] -= 1;
     }
     
     for (let key in obj) {
-        if (obj[key] === 1) {
-            return key;
-        }
+        if (obj[key] === 1) return key;
     }
 }
