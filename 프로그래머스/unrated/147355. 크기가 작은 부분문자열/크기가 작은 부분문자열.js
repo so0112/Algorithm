@@ -1,12 +1,11 @@
 function solution(t, p) {
-    const arr = [];
+    let cnt = 0;
     const len = p.length;
     
-    
     for (let i = 0; i <= t.length - len; i++) {
-        let slice = t.slice(i, i + len);
-        arr.push(slice);
+        let slice = t.slice(i, i + len); 
+        if (slice <= p) cnt++;
     }
-    const filteredArr = arr.filter(el => Number(el) <= Number(p));
-    return filteredArr.length;
+
+    return cnt;
 }
