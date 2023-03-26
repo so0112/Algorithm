@@ -12,8 +12,8 @@ function solution(people, limit){
         	left++
             right--;
         }
-        answer++
+        answer++;
     }
     if(left === right) answer++;
-    return answer
+    return answer;
 }
